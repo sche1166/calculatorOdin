@@ -2,10 +2,11 @@
 //latest version//
 let inputArray = [];
 let currentNumber = "";
+let previousNumber=""
 const calculatorDisplay = document.getElementById("calculatorDisplay");
 const operatorButtons = document.querySelectorAll(".operators");
 const numberButtons = document.querySelectorAll(".numbers");
-const equals = document.getElementById('equals');
+const equals = document.querySelector('#equals');
 
 // Basic mathematical operations
 function add(firstNumber, secondNumber) {
@@ -46,36 +47,50 @@ function calculations(firstNumber, operator, secondNumber) {
 
 
 // Event listener for number buttons
-numberButtons.forEach((numberButton) => {
-numberButton.addEventListener('click', ()=>{
-calculatorDisplay.innerText += numberButton.value
-currentNumber+= numberButton.value
+numberButtons.forEach((num) => {
+num.addEventListener('click', ()=>{
+calculatorDisplay.innerText+= num.innerText
+currentNumber+= num.value
 })
 })
 
-// Event listener for operator buttons
-operatorButtons.forEach((operatorButton) => {
-    operatorButton.addEventListener('click', ()=>{
-  calculatorDisplay.innerText+=operatorButton.innerText;
-  inputArray.push(currentNumber, operatorButton.value)
-  currentNumber=''
-    })
-})
-// Event listener for equals button
-equals.addEventListener('click', () => {
+equals.addEventListener('click', ()=>{
     if(currentNumber){
-        inputArray.push(currentNumber);}
-        let result = parseFloat(inputArray[0])
-        for(let i=1; i<inputArray.length; i += 2){
-        const operator = inputArray[i]
-        const  nextNumber = parseFloat(inputArray[i+1])
-        result = calculations(result,operator, nextNumber)
-        }
-    calculatorDisplay.innerText = result
+        inputArray.push(currentNumber)
+    }
+    let result= parseFloat(inputArray[0])
+    for (let i=1; i<inputArray.length;i+=2){
+   let operator= inputArray[i]
+   let nextNumber= parseFloat(inputArray[i+1])
+   result = calculations(result,operator,nextNumber)
+    }
+   
+    calculatorDisplay.innerText=result.toString()
     inputArray=[]
-    currentNumber = result.toString();
-    })
+    currentNumber= result
+})
 
+
+operatorButtons.forEach((op=>{
+op.addEventListener('click', ()=>{
+calculatorDisplay.innerText+=op.innerText
+inputArray.push(currentNumber, op.value)
+currentNumber=''
+})
+})
+)
+
+function updateResults(op){
+    operator=op
+
+    if(op==null){
+        previousNumber= currentNumber
+    }else{
+        calculations(currentNumber,operator,previousNumber)
+
+    }
+    
+}
     // Clears Display and resets variables
     function clearAll() {
         calculatorDisplay.innerText = "";

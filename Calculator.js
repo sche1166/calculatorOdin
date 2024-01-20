@@ -1,4 +1,5 @@
 // Global variables
+//latest version
 let inputArray = [];
 let currentNumber = "";
 const calculatorDisplay = document.getElementById("calculatorDisplay");

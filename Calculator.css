@@ -1,28 +1,102 @@
-
-
-#container{
-   display: flex;
-    border: 1px  solid black;
-    height: 100vh;
-    align-items: center;
-    justify-content: center;
+* {
+box-sizing: border-box;
+padding:0;
+margin:0;
+font-family: sans-serif;
 }
 
-#calculator{
-    display:flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    width: 400px;
-    height:500px;
-    border: 2px solid red;
-}
-
-#calculatorDisplay{
+.app{
     display: flex;
-    flex-direction: column;
-    align-items: center;
     justify-content: center;
-    border: 1px solid black;
-    padding:15px;
+    align-items: center;
+    height:100vh;
+}
+
+.calculator{
+    background-color: navy;
+    width:100%;
+    max-width:400px;
+    min-height: 700px;
+    display:flex;
+    flex-direction:column;
+    border-radius:1.5rem;
+    overflow: hidden;
+}
+
+.display{
+    min-height:200px;
+    padding: 1.5rem;
+    display: flex;
+    justify-content: flex-end;
+    align-content: flex-end;
+    color:white;
+    text-align: right;
+    flex:1 1 0%;
+}
+.display .input{
+    font-size: 1.25rem;
+    margin-bottom:1.25rem;
+}
+
+.display .output{
+    font-size: 3rem;
+    font:700;
+    max-width: 100%;
+    overflow: auto;
+}
+
+.display .operator {
+    color: #EB6666
+}
+
+.display .brackets 
+.display .percent
+{
+color:#26FED7
+}
+
+.keys{
+    background-color: rgb(31, 29, 29);
+    padding: 1.5rem;
+    border-radius: 1.5rem 1.5rem 0 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    grid-gap: 1.3rem ;
+    box-shadow: 0 -5px  16px rgba(0,0,0,0.9);
+}
+
+.keys .key{
+    position:relative;
+    cursor: pointer;
+    height:0;
+    padding-top:100%;
+    background-color: #262933;
+    border-radius: 1rem;
+    transition:0.2s;
+    user-select:none;
+    font-size: 2em;
+    font:700;
+    color:white;
+}
+
+.keys .key span{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.keys .key:hover{
+    box-shadow: inset 0px 0px 8px rgba(120, 72, 72, 0.9);
+}
+
+.keys .key.operator span{
+    color: #EB6666;
+    font:800;
+}
+
+.keys .key.action span{
+    color:#26FED7;
+    font:800;
 }

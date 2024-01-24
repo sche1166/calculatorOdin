@@ -1,50 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="Calculator.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <link rel="stylesheet" href="Calculator.css">
-
-</head>
-
-<body>
-  <div id="container">
-    <div id="calculator">
-      <div id="calculatorDisplay"></div>
-
-      <div class="buttons">
-        <div class="numberButtons">
-          <button class="numbers" value='0'>0</button>
-          <button class="numbers" value="1">1</button>
-          <button class="numbers" value="2">2</button>
-          <button class="numbers" value="3">3</button>
-          <button class="numbers" value="4">4</button>
-          <button class="numbers" value="5">5</button>
-          <button class="numbers" value="6">6</button>
-          <button class="numbers" value="7">7</button>
-          <button class="numbers" value="8">8</button>
-          <button class="numbers" value="9">9</button>
-          <button class="numbers" value=".">.</button>
+  <body>
+    <div class="app">
+      <div class="calculator">
+        <div class="display">
+          <div class="content">
+          <div class="input">10 <span class ='operator'> x</span>100</div>
+          <div class="output">1000</div>
         </div>
-        <div class="operatorButtons">
+        </div>
+        <div class="keys">
+          <div data-key = "clear" class="key action">
+            <span>AC</span>
+          </div>
+
+          <div data-key="brackets" class="key action">
+            <span>( )</span>
+          </div>
+
+          <div data-key="%" class="key action">
+            <span>%</span>
+          </div>
+
+          <div data-key="/" class="key operator">
+            <span>/</span>
+          </div>
+
+          <div data-key="7" class="key">
+            <span>7</span>
+          </div>
+
+          <div data-key="8" class="key">
+            <span>8</span>
+          </div>
+
+          <div data-key="9" class="key">
+            <span>9</span>
+          </div>
+
+          <div data-key="*" class="key operator">
+            <span>x</span>
+          </div>
+
+          <div data-key="4" class="key">
+            <span>4</span>
+          </div>
+
+          <div data-key="5" class="key">
+            <span>5</span>
+          </div>
+
+          <div data-key="6" class="key">
+            <span>6</span>
+          </div>
+
+          <div data-key="-" class="key operator">
+            <span>-</span>
+          </div>
+
+          <div data-key="1" class="key">
+            <span>1</span>
+          </div>
+
+          <div data-key="2" class="key">
+            <span>2</span>
+          </div>
+
+          <div data-key="3" class="key">
+            <span>3</span>
+          </div>
+
+          <div data-key="+" class="key operator">
+            <span>+</span>
+          </div>
+
+          <div data-key="backspace" class="key action">
+            <span> &lt; </span>
+          </div>
+
+          <div data-key="0" class="key">
+            <span>0</span>
+          </div>
+
+          <div data-key="." class="key">
+            <span>.</span>
+          </div>
+
+          <div data-key="=" class="key operator">
+            <span>=</span>
+          </div>
+            
+        </div>
           
-          <button class= "operators" id="operatorAdd" value="+">+</button>
-          <button class= "operators" id="operatorSubtract" value="-">-</button>
-          <button class= "operators" id="operatorMultiply" value="*">X</button>
-          <button class= "operators" id="operatorDivide" value="/">/</button>
-          <button  id="equals"  value="=">=</button>
-          <button onclick="clearAll()">Clear</button>
-        </div>
+       
       </div>
-
     </div>
-  </div>
 
-
-
-  <script src="Calculator.js"></script>
-</body>
-
+    <script src="Calculator.js"></script>
+  </body>
 </html>

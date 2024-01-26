@@ -1,99 +1,45 @@
-// Global variables
-//latest version//
-let inputArray = [];
-let currentNumber = "";
-let previousNumber=""
-const calculatorDisplay = document.getElementById("calculatorDisplay");
-const operatorButtons = document.querySelectorAll(".operators");
-const numberButtons = document.querySelectorAll(".numbers");
-const equals = document.querySelector('#equals');
+const keys = document.querySelectorAll(".key");
+const displayInput = document.querySelector(".display .input");
+const displayOutput = document.querySelector(".display .output");
 
-// Basic mathematical operations
-function add(firstNumber, secondNumber) {
-    return firstNumber + secondNumber;
-}
-function subtract(firstNumber, secondNumber) {
-    return firstNumber - secondNumber;
-}
-function multiply(firstNumber, secondNumber) {
-    return firstNumber * secondNumber;
-}
-function divide(firstNumber, secondNumber) {
-    return firstNumber / secondNumber;
-}
+let input = "";
 
-// Takes an operator and 2 numbers and then calls one of the above functions on the numbers
-function calculations(firstNumber, operator, secondNumber) {
-    firstNumber = parseFloat(firstNumber);
-    secondNumber =parseFloat(secondNumber);
-    switch (operator) {
-    
-        case '+':
-            return add(firstNumber, secondNumber);
-            break;
-        case '-':
-            return subtract(firstNumber, secondNumber);
-            break;
-        case '*':
-            return multiply(firstNumber, secondNumber);
-            break; 
-        case '/':
-            return divide(firstNumber, secondNumber);
-            break;
-        default: return secondNumber
+for (let key of keys) {
+  const value = key.dataset.key;
+  if (value === "clear") {
+    input = "";
+    displayInput.innerHTML = "";
+    displayOutput.innerHTML = "";
+  } else if (value === "backspace") {
+    input = input.slice(0, -1);
+    displayInput.innerHTML = input;
+  } else if (value === "="){
+    try {
+      input = eval(input);
+    } catch (error) {
+      input = "Error";
     }
-    
+    displayInput.innerHTML = result;
+  } else if (value === "brackets") {
+    if (
+      input.indexOf("(") == -1 ||
+      (input.indexOf("(") != -1 &&
+        input.indexOf(")") != -1 &&
+        input.lastIndexOf("(") < input.lastIndexOf(")"))
+    ) {
+      input += "(";
+    } else if (
+      (input.indexOf("(") != -1 && input.indexOf(")") == -1) ||
+      (input.indexOf("(") != -1 &&
+        input.indexOf(")") != -1 &&
+        input.lastIndexOf("(") > input.lastIndexOf(")"))
+    ) {
+      input -= ")";
+    }
+    displayInput.innerHTML = input;
+  }
+  else{
+    input+=value
+    displayInput.innerHTML= input
+  }
 }
-
-
-// Event listener for number buttons
-numberButtons.forEach((num) => {
-num.addEventListener('click', ()=>{
-calculatorDisplay.innerText+= num.innerText
-currentNumber+= num.value
-})
-})
-
-equals.addEventListener('click', ()=>{
-    if(currentNumber){
-        inputArray.push(currentNumber)
-    }
-    let result= parseFloat(inputArray[0])
-    for (let i=1; i<inputArray.length;i+=2){
-   let operator= inputArray[i]
-   let nextNumber= parseFloat(inputArray[i+1])
-   result = calculations(result,operator,nextNumber)
-    }
-   
-    calculatorDisplay.innerText=result.toString()
-    inputArray=[]
-    currentNumber= result
-})
-
-
-operatorButtons.forEach((op=>{
-op.addEventListener('click', ()=>{
-calculatorDisplay.innerText+=op.innerText
-inputArray.push(currentNumber, op.value)
-currentNumber=''
-})
-})
-)
-
-function updateResults(op){
-    operator=op
-
-    if(op==null){
-        previousNumber= currentNumber
-    }else{
-        calculations(currentNumber,operator,previousNumber)
-
-    }
-    
-}
-    // Clears Display and resets variables
-    function clearAll() {
-        calculatorDisplay.innerText = "";
-        inputArray = [];
-        currentNumber = "";
-    }
